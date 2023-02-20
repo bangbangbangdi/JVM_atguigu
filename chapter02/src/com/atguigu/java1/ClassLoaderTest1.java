@@ -1,7 +1,6 @@
 package com.atguigu.java1;
 
 import sun.misc.Launcher;
-import sun.security.ec.CurveDB;
 
 import java.net.URL;
 import java.security.Provider;
@@ -19,14 +18,14 @@ public class ClassLoaderTest1 {
         ClassLoader classLoader = Provider.class.getClassLoader();
         System.out.println(classLoader);
 
-        System.out.println("----------扩展类加载器----------");
-        String exDirs = System.getProperty("java.ext.dirs");
-        for (String path : exDirs.split(";")) {
-            System.out.println(path);
-        }
+        //system.out.println("----------扩展类加载器----------");
+        //string exdirs = system.getproperty("java.ext.dirs");
+        //for (string path : exdirs.split(";")) {
+        //    system.out.println(path);
+        //}
         // 从上面的路径中随意选择一个类，来看看他的类加载器是什么 扩展类加载器
-        ClassLoader classLoader1 = CurveDB.class.getClassLoader();
-        System.out.println(classLoader1);
+        //ClassLoader classLoader1 = CurveDB.class.getClassLoader();
+        //System.out.println(classLoader1);
 
 
     }
