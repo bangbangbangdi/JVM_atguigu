@@ -1,5 +1,8 @@
 package com.atguigu.java;
 
+/**
+ * -Xms10m -Xmx10m
+ */
 public class HeapDemo {
 
     public static void main(String[] args) {
@@ -7,7 +10,7 @@ public class HeapDemo {
         try {
             Thread.sleep(1000000);
         } catch (InterruptedException e) {
-            e.printStackTrace();
+            //e.printStackTrace();
         }
         System.out.println("end...");
     }
