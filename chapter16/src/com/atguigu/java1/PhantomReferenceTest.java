@@ -37,6 +37,37 @@ public class PhantomReferenceTest {
     }
 
     public static void main(String[] args) {
+        Thread t = new CheckRefQueue();
+        t.setDaemon(true);
+        t.start();
+
+        phantomQueue = new ReferenceQueue<>();
+        obj = new PhantomReferenceTest();
+        PhantomReference<PhantomReferenceTest> phantomRef = new PhantomReference<PhantomReferenceTest>(obj,phantomQueue);
+
+        try {
+            System.out.println(phantomRef.get());
+            obj = null;
+            System.gc();
+            Thread.sleep(1000);
+            if (obj == null){
+                System.out.println("obj is null");
+            } else {
+                System.out.println("obj is not null");
+            }
+            System.out.println("second gc");
+            obj = null;
+            System.gc();
+            Thread.sleep(1000);
+            if (obj == null){
+                System.out.println("obj is null");
+            } else {
+                System.out.println("obj is not null");
+            }
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
 
     }
 
