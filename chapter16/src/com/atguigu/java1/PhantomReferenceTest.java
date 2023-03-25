@@ -1,7 +1,6 @@
 package com.atguigu.java1;
 
 import java.lang.ref.PhantomReference;
-import java.lang.ref.Reference;
 import java.lang.ref.ReferenceQueue;
 
 public class PhantomReferenceTest {
@@ -12,19 +11,7 @@ public class PhantomReferenceTest {
     public static class CheckRefQueue extends Thread {
         @Override
         public void run() {
-            while(true){
-                if (phantomQueue != null){
-                    PhantomReference<PhantomReferenceTest> objt = null;
-                    //PhantomReferenceTest objt = null;
-                    try {
-                        objt = (PhantomReference<PhantomReferenceTest>) phantomQueue.remove();
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                    if (objt != null){
-                        System.out.println("追踪垃圾回收过程:PhantomReferenceTest实例被GC了");
-                    }
-                }
+            while (true) {
             }
         }
     }
@@ -43,14 +30,14 @@ public class PhantomReferenceTest {
 
         phantomQueue = new ReferenceQueue<>();
         obj = new PhantomReferenceTest();
-        PhantomReference<PhantomReferenceTest> phantomRef = new PhantomReference<PhantomReferenceTest>(obj,phantomQueue);
+        PhantomReference<PhantomReferenceTest> phantomRef = new PhantomReference<PhantomReferenceTest>(obj, phantomQueue);
 
         try {
             System.out.println(phantomRef.get());
             obj = null;
             System.gc();
             Thread.sleep(1000);
-            if (obj == null){
+            if (obj == null) {
                 System.out.println("obj is null");
             } else {
                 System.out.println("obj is not null");
@@ -59,7 +46,7 @@ public class PhantomReferenceTest {
             obj = null;
             System.gc();
             Thread.sleep(1000);
-            if (obj == null){
+            if (obj == null) {
                 System.out.println("obj is null");
             } else {
                 System.out.println("obj is not null");
@@ -67,8 +54,5 @@ public class PhantomReferenceTest {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-
-
     }
-
 }
